@@ -7,7 +7,7 @@ const Orders = props => {
       <div className="order">
         <h3>{order.name}</h3>
         <ul className="ingredient-list">
-          {order.ingredients.map(ingredient => {
+          {order.ingredients?.map(ingredient => {
             return <li>{ingredient}</li>
           })}
         </ul>
@@ -16,7 +16,7 @@ const Orders = props => {
   });
 
   return (
-    <section>
+    <section data-testid="orders-section" >
       { orderEls.length ? orderEls : <p>No orders yet!</p> }
     </section>
   )

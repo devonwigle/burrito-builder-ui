@@ -29,7 +29,7 @@ class App extends Component {
     return (
       <main className="App">
         <header>
-          <h1>Burrito Builder</h1>
+          <h1 data-testid="title">Burrito Builder</h1>
           <OrderForm createOrder={this.createOrder} />
         </header>
 

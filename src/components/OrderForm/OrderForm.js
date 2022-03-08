@@ -33,7 +33,7 @@ class OrderForm extends Component {
     } else if (this.state.ingredients.length === 0) {
       this.setState({error: 'Please add ingredients to your order'})
     } else {
-      const newOrder = { name: this.state.name, ingredients: this.state.ingredients }
+      const newOrder = { id: Date.now(), name: this.state.name, ingredients: this.state.ingredients }
       this.props.createOrder(newOrder)
       this.clearInputs();
     }
@@ -47,7 +47,7 @@ class OrderForm extends Component {
     const possibleIngredients = ['beans', 'steak', 'carnitas', 'sofritas', 'lettuce', 'queso fresco', 'pico de gallo', 'hot sauce', 'guacamole', 'jalapenos', 'cilantro', 'sour cream'];
     const ingredientButtons = possibleIngredients.map(ingredient => {
       return (
-        <button key={ingredient} name={ingredient} onClick={e => this.handleIngredientChange(e)}>
+        <button data-testid={ingredient} key={ingredient} name={ingredient} onClick={e => this.handleIngredientChange(e)}>
           {ingredient}
         </button>
       )
@@ -64,14 +64,15 @@ class OrderForm extends Component {
           name='name'
           value={this.state.name}
           onChange={e => this.handleNameChange(e)}
+          data-testid="name-input"
         />
 
         { this.createIngredientButtons() }
 
-        <p>Order: { this.state.ingredients.join(', ') || 'Nothing selected' }</p>
+        <p data-testid="order-builder">Order: { this.state.ingredients.join(', ') || 'Nothing selected' }</p>
         {this.state.error && <p>{this.state.error}</p>}
 
-        <button onClick={e => this.handleSubmit(e)}>
+        <button data-testid="submit-button" onClick={e => this.handleSubmit(e)}>
           Submit Order
         </button>
       </form>
