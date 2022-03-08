@@ -9,7 +9,7 @@ export const postOrder = (newOrder) => {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(order),
+    body: JSON.stringify(newOrder),
   })
   .then(response => {
     if (!response.ok) {
